@@ -1,0 +1,35 @@
+<div class="pageBox">
+  <div class="logBox">
+    <div class="formHeader">
+      Inicio de sesión
+    </div>
+    <div class="logoBox">
+      <img class="formImg" src="assets/brand/logo.png" alt="Logo">
+    </div>
+    <div class="formBox">
+      <form [formGroup]="login" (ngSubmit)="logUser()">
+        <div class="formContent">
+          <div class="formInput">
+            <input class="lInput" type="text" formControlName="username" name="username"
+              placeHolder="Su nombre de usuario">
+          </div>
+          <div class="formInput">
+            <input class="lInput" type="password" formControlName="password" name="password"
+              placeHolder="Su contraseña">
+            </div>
+            <p class="tagBox">Por favor introduzca su contraseña</p>
+          <!-- <label class="lLabel" for="pass">Contraseña:</label> -->
+          <div class="buttonBox">
+
+            <button style="margin-right: 10px;" type="button" class="formButton" (click)="registro()">
+              <p>Registrarse</p>
+            </button>
+            <button type="submit" class="formButton">
+              <p>Iniciar sesión</p>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

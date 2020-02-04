@@ -1,0 +1,5 @@
+<div class="modBox">
+	<div class="titleBox">
+			<p *ngFor="let item of menu; let i = index" (click)="toggleMenu($event, item, i)" class="titleMenu" [ngClass]="item.class">{{item.name}}</p>
+		</div>
+</div>

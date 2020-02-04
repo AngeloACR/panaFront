@@ -1,0 +1,113 @@
+.navBox{
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	margin-top: 1.5vh; 
+	z-index: 2500;
+
+}
+
+.listBox{
+	width:80%;
+	margin-right: 5%;
+	margin-left: 10%;
+}
+
+.navList{
+	padding: 0;
+	width: 100%;
+	display: inline-flex;
+	align-self: center;
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+.menuIcon{
+	margin-right: 15px;
+}
+
+.navList a{
+	width: 100%;
+	color: black;
+}
+
+.navElement{
+	display:flex;
+	align-items:center;
+	color: black;
+	width: 100%;
+	height: 5vh;
+	margin-bottom: 1px;
+	cursor: pointer;
+}
+
+.navElement:hover{
+	font-weight: bold;
+}
+
+a {
+    text-decoration: none !important;	
+}
+
+.navElement a:active{
+	font-weight: bold;
+	display: flex;
+	align-items: flex-start;
+}
+
+.lBox{
+	display: inline-flex;
+	flex-direction: column;
+	align-items: flex-start;
+	overflow: hidden;
+	width: 100%;
+	margin-bottom: 1px;
+	max-height: 0;
+	transition: max-height 0.2s ease-out;
+}
+
+.navChild{
+	display:flex;
+	align-items:center;
+	color: black;
+	width: 100%;
+	height: 5vh;
+	margin-bottom: 1px;
+	background-color: white;
+	font-size: 15px;
+	cursor: pointer;
+}
+
+.navChild a{
+	width: 100%;
+	height: 100%;
+}
+
+.navChild:hover{
+	font-weight: bold;
+}
+
+.aBox{
+	max-height: 200vh;
+}
+
+.aMenu{
+	background-color: white;
+	margin-bottom: 0;
+	color: #0297E7;
+	font-weight: bold;
+}
+
+.sideFoot{
+	display: block;
+	margin-top: 50px;
+	width: 100%;
+	height: auto; 
+}
+
+.sImg{
+	display: block;
+	width: 80%;
+	position: relative;
+	margin: 0 auto;
+}

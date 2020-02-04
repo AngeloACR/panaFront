@@ -1,0 +1,93 @@
+<div class="modBox">
+	<div class="titleBox">
+		<p *ngFor="let item of menu; let i = index" (click)="toggleMenu($event, item, i)" class="titleMenu"
+			[ngClass]="item.class">{{item.name}}</p>
+	</div>
+
+	<div class="cardBox" *ngFor="let user of users;">
+		<div class="cardHeader">
+			<div class="cardImg">
+				<img [src]="user.img" alt="">
+			</div>
+			<div class="cardName">
+				<p>{{user.name}}</p>
+				<p>{{user.speciality}}</p>
+			</div>
+			<div class="cardIcons">
+			</div>		
+		</div>
+		<div class="cardContent">
+			<div class="cardText">
+				<p>Experiencia</p>
+				<p>{{user.experience}}</p>
+			</div>
+			<div class="cardText">
+				<p>Valoración</p>
+				<p>{{user.rating}}</p>
+			</div>
+			<div class="cardText">
+				<p>Reseñas</p>
+				<p>{{user.nreviews}}</p>
+			</div>
+		</div>
+		<div class="cardButtons">
+			<button (click)="tBox()">Pedir cita</button>
+			<button>Valorar</button>
+			<button>Mas información</button>
+		</div>
+	</div>
+
+<!-- 	<form class="showBox" [formGroup]="myForm" (ngSubmit)="confirmAdd()">
+		<table style="width: 100%;" formArrayName="myInputs">
+			<tr class="listBox">
+				<th class="listButton"></th>
+				<th class="listTitle" *ngFor="let field of fields;">{{field}}</th>
+			</tr>
+			<tr class="bItem" *ngFor="let value of values;">
+				<td class="listButton">
+					<button type="button" id="closeB" (click)="deleteItem($event, value)">X</button>
+					<img id="updateB" src="/assets/tuerca.png" (click)="openUpdate($event, value)">
+				</td>
+				<td class="listTitle" *ngFor="let item of value | keyvalue">{{item.value}}</td>
+			</tr>
+			<tr class="formItem" [ngClass]="showRow" *ngFor="let form of forms; let j=index">
+				<td class="listButton">
+					<button type="submit" id="submitB">Add</button>
+				</td>
+				<td class="listTitle" *ngFor="let input of myInputs.controls; let i=index">
+					<input class="lInput" type="text" [formControlName]="2*j+i" [placeholder]="fields[i%2]">
+				</td>
+			</tr>
+		</table>
+	</form>
+		<button class="buttonBox" (click)="openForm()">
+		{{addText}}
+	</button> -->
+</div>
+
+
+
+<div class="blackBox" [ngClass]="openBox" (click)="tBox()">
+</div>
+
+<div class="addBox" [ngClass]="openBox">
+
+
+	<div class="closeButton">
+		<button class="closeB" (click)="tBox()">X</button>
+	</div>
+
+	<div class="formHeader">
+		<h1>Pedir cita</h1>
+	</div>
+
+	<form class="formContent" [formGroup]="reservaForm" (ngSubmit)="confirmReserva()">
+		<input class="lInput" type="text" formControlName="info" placeholder="Describa sus síntomas" />
+		<input class="lInput" type="date" formControlName="fecha" placeholder="Elegir fecha" />
+		<input class="lInput" type="time" formControlName="hora" placeholder="Elegir hora" />
+	</form>
+
+	<button type="submit" class="formButton">
+		<p>Aceptar</p>
+	</button>
+</div>

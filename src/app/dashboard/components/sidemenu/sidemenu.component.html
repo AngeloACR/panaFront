@@ -1,0 +1,12 @@
+<nav id="cisNav" class="navBox">
+	<ul class="navList">
+		<div class="listBox" *ngFor="let item of myMenu;">
+			<li [id]="item.id" class="navElement opt">
+				<a [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" [routerLink]="item.link">
+
+					<fa-icon [icon]="item.icon" class="menuIcon"></fa-icon>{{item.name}}
+				</a>
+			</li>
+		</div>
+	</ul>
+</nav>
