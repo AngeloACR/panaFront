@@ -35,11 +35,26 @@ export class HeaderComponent implements OnInit {
       {
         endpoint: '/users/all',
         name: 'users'
-      }
+      },
+      {
+        endpoint: '/doctors/all',
+        name: 'doctors'
+      },
+      {
+        endpoint: '/patients/all',
+        name: 'patients'
+      },
     ]
-    this.dbHandler.getSomething('/users/all').subscribe(info => {
-      console.log(info);
-      this.dbHandler.refreshData(info, 'users');
+    let dataArray = [];
+    refreshList.forEach(element => {
+      dataArray.push(this.dbHandler.getSomething(element.endpoint));
+    });
+    forkJoin(dataArray).subscribe(info => {
+      let i = 0;
+      refreshList.forEach(element => {
+        this.dbHandler.refreshData(info[i], element.name);
+        i++;
+      });
       window.location.reload();
     });
   }

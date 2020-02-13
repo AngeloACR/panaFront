@@ -3,7 +3,7 @@
 		<p *ngFor="let item of menu; let i = index" (click)="toggleMenu($event, item, i)" class="titleMenu"
 			[ngClass]="item.class">{{item.name}}</p>
 	</div>
-
+<!-- 
 	<div class="cardBox" *ngFor="let user of users;">
 		<div class="cardHeader">
 			<div class="cardImg">
@@ -35,9 +35,9 @@
 			<button>Valorar</button>
 			<button>Mas información</button>
 		</div>
-	</div>
+	</div> -->
 
-<!-- 	<form class="showBox" [formGroup]="myForm" (ngSubmit)="confirmAdd()">
+	<form class="showBox" [formGroup]="myForm" (ngSubmit)="confirmAdd()">
 		<table style="width: 100%;" formArrayName="myInputs">
 			<tr class="listBox">
 				<th class="listButton"></th>
@@ -60,7 +60,7 @@
 			</tr>
 		</table>
 	</form>
-		<button class="buttonBox" (click)="openForm()">
+<!-- 		<button class="buttonBox" (click)="openForm()">
 		{{addText}}
 	</button> -->
 </div>

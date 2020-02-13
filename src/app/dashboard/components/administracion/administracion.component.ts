@@ -57,7 +57,7 @@ export class AdministracionComponent implements OnInit {
     this.setMenu();
 
     if (this.id == '0') {
-      this.initComponent('/users/all', 'users', 'Administrador de usuarios', 'Agregar usuarios')
+      this.initComponent('/users/', 'users', 'Administrador de usuarios', 'Agregar usuarios')
     } else if (this.id == '1') {
       this.initComponent('/permisos/', 'permisos', 'Administrador de permisos', 'Agregar permiso')
     }
@@ -136,17 +136,17 @@ export class AdministracionComponent implements OnInit {
 
   deleteItem(event, item) {
     var myEnd = this.endpoint;
-    if (myEnd == '/users/all') {
-      myEnd = myEnd.replace('/all', '/')
-    }
+    console.log(item);
+    console.log(item[0]);
     let functions = [];
     /*     this.dbHandler.deleteSomething(item[0], myEnd)
           .subscribe(data => {   // data is already a JSON object
             this.dbHandler.refreshData(myEnd, this.name);
           }); */
-    this.dbHandler.deleteSomething(item[1], myEnd).pipe(
-      flatMap((res1) => this.dbHandler.getSomething(myEnd))
+    this.dbHandler.deleteSomething(item[0], myEnd).pipe(
+      flatMap((res1) => this.dbHandler.getSomething(myEnd+'all'))
     ).subscribe((info) => {
+      console.log(info);
       this.dbHandler.refreshData(info, this.name)
     });
 

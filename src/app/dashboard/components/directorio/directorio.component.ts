@@ -179,6 +179,10 @@ export class DirectorioComponent implements OnInit {
       });
   }
 
+  confirmAdd(){
+    
+  }
+
   confirmReserva() {
     var myEnd = this.endpoint;
 

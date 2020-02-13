@@ -22,10 +22,16 @@ export class RegistroComponent implements OnInit {
   tipoSelected: String;
   isPaciente: Boolean;
   isDoctor: Boolean;
+  showBlack: {};
   showForm: {};
   selectedImg: String;
   doctorImg: String;
   pacienteImg: String;
+
+  fileName1: String;
+  fileName2: String;
+  fileName3: String;
+
 
   constructor(
     private auth: AuthService,
@@ -35,9 +41,9 @@ export class RegistroComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.initForm
-    this.doctorImg = 'assets/svg-icons/doctor-color.svg'
-    this.pacienteImg = 'assets/svg-icons/patient-color.svg'
+    this.initForm();
+    this.doctorImg = 'assets/svg-icons/doctor-color.svg';
+    this.pacienteImg = 'assets/svg-icons/patient-color.svg';
   }
 
   initForm() {
@@ -69,30 +75,36 @@ export class RegistroComponent implements OnInit {
 
   toggleForm(event, tipo) {
     this.formSelected = true;
-
+    let img;
     switch (tipo) {
       case 'doctor':
         this.isDoctor = true;
         this.isPaciente = false;
-        this.selectedImg = this.doctorImg;
+        img = this.doctorImg;
         break;
       case 'paciente':
         this.isDoctor = false;
         this.isPaciente = true;
-        this.selectedImg = this.pacienteImg;
+        img = this.pacienteImg;
         break;
       default:
         break;
     }
+    this.selectedImg = img;
+    console.log(this.selectedImg);
     this.tipoSelected = tipo;
     this.showForm = {
       formAct: true
     }
+    this.showBlack = {
+      blackAct: true
+    }
+
   }
 
   endRegistro() {
     var userAux = this.registroUser.value;
-
+    console.log(userAux)
     var userValues;
     let tipo = this.tipoSelected;
 
@@ -108,7 +120,7 @@ export class RegistroComponent implements OnInit {
           tlf: userAux.tlf,
           mail: userAux.mail,
           password: userAux.password,
-          type: 'doctor',
+          type: 'Doctor',
           speciality: formAux.speciality,
           summary: formAux.summary,
           experience: formAux.exp,
@@ -125,7 +137,7 @@ export class RegistroComponent implements OnInit {
           tlf: userAux.tlf,
           mail: userAux.mail,
           password: userAux.password,
-          type: 'patient',
+          type: 'Paciente',
         };
 
         endpoint = '/patients';
@@ -148,10 +160,10 @@ export class RegistroComponent implements OnInit {
 
   }
 
-  registerUser(){
+  registerUser() {
 
   }
-  registerDoctor(){
+  registerDoctor() {
 
   }
 
@@ -159,5 +171,9 @@ export class RegistroComponent implements OnInit {
     this.showForm = {
       formAct: false
     }
+    this.showBlack = {
+      blackAct: false
+    }
+
   }
 }

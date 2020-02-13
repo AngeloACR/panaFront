@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { DbHandlerService } from '../../dashboard/services/db-handler.service';
-import {FormBuilder, FormGroup, FormControl} from '@angular/forms';
-import { Router } from '@angular/router'; 
+import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -16,9 +17,9 @@ export class LoginComponent implements OnInit {
   constructor(
     private auth: AuthService,
     private dbHandler: DbHandlerService,
-    private fb: FormBuilder, 
+    private fb: FormBuilder,
     private router: Router
-    ) { }
+  ) { }
 
   ngOnInit() {
     this.login = new FormGroup({
@@ -28,35 +29,50 @@ export class LoginComponent implements OnInit {
 
   }
 
-  logUser(){
+  logUser() {
     var data = this.login.value;
-    this.auth.login(data).subscribe((logData: any)=>{
+    this.auth.login(data).subscribe((logData: any) => {
       if (logData.auth) {
         this.auth.storeData(logData);
-        window.location.reload();
         this.actualizar();
-        this.router.navigateByUrl('/');
       }
     });
   }
-  actualizar(){
+  actualizar() {
     let refreshList = [
       {
-        endpoint: '/users/',
+        endpoint: '/users/all',
         name: 'users'
-      }
+      },
+      {
+        endpoint: '/doctors/all',
+        name: 'doctors'
+      },
+      {
+        endpoint: '/patients/all',
+        name: 'patients'
+      },
     ]
-    refreshList.forEach(data => {
-      this.dbHandler.refreshData(data.endpoint, data.name);
+    let dataArray = [];
+    refreshList.forEach(element => {
+      dataArray.push(this.dbHandler.getSomething(element.endpoint));
+    });
+    forkJoin(dataArray).subscribe(info => {
+      let i = 0;
+      refreshList.forEach(element => {
+        this.dbHandler.refreshData(info[i], element.name);
+        i++;
+      });
+      window.location.reload();
     });
   }
-  flush(){
-    this.login.setValue({  
+  flush() {
+    this.login.setValue({
       username: '',
       password: ''
     });
   }
-  registro(){
+  registro() {
     this.router.navigateByUrl('/registro');
   }
 }

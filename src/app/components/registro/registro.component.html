@@ -1,148 +1,103 @@
 <div class="pageBox">
-  <div class="selectionBox">
-    <div class="headerBox">
-      <h1>Registro</h1>
-    </div>
-    <div class="optionsBox">
-      <h1>Seleccione su tipo de ususario:</h1>
-      <div class="iconsBox">
-        <img
-          class="iconImg"
-          src="assets/svg-icons/patient-mono.svg"
-          alt="Logo"
-          (click)="toggleForm($event, 'paciente')"
-        />
-        <img
-          class="iconImg"
-          src="assets/svg-icons/doctor-mono.svg"
-          alt="Logo"
-          (click)="toggleForm($event, 'doctor')"
-        />
-      </div>
-    </div>
-  </div>
-  <div class="blackBox" [ngClass]="showForm" (click)="closeForm()"></div>
-
-  <div class="logBox" [ngClass]="showForm">
-    <div class="formHeader">
-      <img class="formImg" src="assets/brand/logo.png" alt="Logo" />
-      <p>Has elegido:</p>
-      <img class="formImg" [src]="selectedImg" alt="Logo" />
-    </div>
-    <div class="formBox">
-      <form [formGroup]="registroUser" (ngSubmit)="registerUser()">
-        <div class="formContent">
-          <div class="formInput">
-            <label for="">Correo Electrónico</label>
-            <input
-              class="lInput"
-              type="text"
-              formControlName="mail"
-              name="mail"
-            />
-          </div>
-          <div class="formInput">
-            <label for="">Usuario</label>
-            <input
-              class="lInput"
-              type="text"
-              formControlName="username"
-              name="username"
-            />
-          </div>
-          <div class="formInput">
-            <label for="">Contraseña</label>
-            <input
-              class="lInput"
-              type="password"
-              formControlName="password"
-              name="password"
-            />
-          </div>
-          <div class="formInput">
-            <label for="">Confirmar contraseña</label>
-            <input
-              class="lInput"
-              type="password"
-              formControlName="cpassword"
-              name="cpassword"
-            />
-          </div>
+    <div class="selectionBox">
+        <div class="headerBox">
+            <h1>Registro</h1>
         </div>
-      </form>
-
-      <form
-        *ngIf="isDoctor"
-        [formGroup]="registroDoctor"
-        (ngSubmit)="registerDoctor()"
-      >
-        <div class="formContent">
-          <div class="formInput">
-            <label for="">Especialidad</label>
-            <input
-              class="lInput"
-              type="text"
-              formControlName="speciality"
-              name=""
-            />
-          </div>
-          <div class="formInput">
-            <label for="">Experiencia</label>
-            <input class="lInput" type="text" formControlName="exp" name="" />
-          </div>
-          <div class="formInput">
-            <label for="">Dirección</label>
-            <input
-              class="lInput"
-              type="text"
-              formControlName=""
-              name="password"
-            />
-          </div>
-          <div class="formInput">
-            <label for="">Breve descripción de su trabajo</label>
-            <textarea
-              rows="4"
-              style="width: 80%;"
-              type="text"
-              formControlName="summary"
-              name=""
-            ></textarea>
-          </div>
-          <div class="formImagenes">
-            <label for="">Subir documentos de validación</label>
-            <div class="formFiles">
-              <input
-                class="lInput"
-                type="file"
-                formControlName="documento1"
-                name=""
-              />
-              <input
-                class="lInput"
-                type="file"
-                formControlName="documento2"
-                name=""
-              />
-              <input
-                class="lInput"
-                type="file"
-                formControlName="documento3"
-                name=""
-              />
+        <div class="optionsBox">
+            <h1>Seleccione su tipo de ususario:</h1>
+            <div class="iconsBox">
+                <div class="iconBox">
+                    <img class="iconImg" src="assets/svg-icons/patient-color.svg" alt="Logo" (click)="toggleForm($event, 'paciente')" />
+                    <p>Paciente</p>
+                </div>
+                <div class="iconBox">
+                    <img class="iconImg" src="assets/svg-icons/doctor-color.svg" alt="Logo" (click)="toggleForm($event, 'doctor')" />
+                    <p>Doctor</p>
+                </div>
             </div>
-          </div>
         </div>
-      </form>
-
-      <button
-        style="align-self: center;"
-        type="button"
-        class="formButton"
-        (click)="endRegistro()"
-      >
-        <p>Registrarse</p>
-      </button>
     </div>
-  </div>
+    <div class="blackBox" [ngClass]="showBlack" (click)="closeForm()"></div>
+
+    <div class="logBox" [ngClass]="showForm">
+        <div class="formSide">
+            <img class="formImg" src="assets/brand/logo.png" alt="Logo" />
+        </div>
+        <div class="formBox">
+            <form [formGroup]="registroUser" (ngSubmit)="registerUser()">
+                <div class="formContent">
+                    <div class="formInput">
+                        <label for="">Nombre</label>
+                        <input class="lInput" type="text" formControlName="name" name="name" />
+                    </div>
+                    <div class="formInput">
+                        <label for="">Correo Electrónico</label>
+                        <input class="lInput" type="text" formControlName="mail" name="mail" />
+                    </div>
+                    <div class="formInput">
+                        <label for="">Usuario</label>
+                        <input class="lInput" type="text" formControlName="username" name="username" />
+                    </div>
+                    <div class="formInput">
+                        <label for="">Contraseña</label>
+                        <input class="lInput" type="password" formControlName="password" name="password" />
+                    </div>
+                    <div class="formInput">
+                        <label for="">Confirmar contraseña</label>
+                        <input class="lInput" type="password" formControlName="cpassword" name="cpassword" />
+                    </div>
+                </div>
+            </form>
+
+            <form *ngIf="isDoctor" [formGroup]="registroDoctor" (ngSubmit)="registerDoctor()">
+                <div class="formContent">
+                    <div class="formInput">
+                        <label for="">Especialidad</label>
+                        <input class="lInput" type="text" formControlName="speciality" name="" />
+                    </div>
+                    <div class="formInput">
+                        <label for="">Experiencia</label>
+                        <input class="lInput" type="text" formControlName="exp" name="" />
+                    </div>
+                    <div class="formInput">
+                        <label for="">Dirección</label>
+                        <input class="lInput" type="text" formControlName="addr" name="password" />
+                    </div>
+                    <div class="formDescripcion">
+                        <label for="">Breve descripción de su trabajo: </label>
+                        <textarea rows="6" type="text" formControlName="summary" name=""></textarea>
+                    </div>
+                    <div class="formImagenes">
+                        <br />
+                        <h3>Subir documentos de validación</h3>
+                        <br />
+                        <div class="formFiles">
+                            <div class="formFile">
+                                <label for="documento1"></label>
+                                <input type="file" formControlName="documento1" id="documento1" (change)="fileProgress($event)" />
+                                <span *ngIf="fileName1">{{fileName1}}</span>
+                            </div>
+                            <div class="formFile">
+                                <label for="documento2"></label>
+                                <input type="file" formControlName="documento2" id="documento2" (change)="fileProgress($event)" />
+                                <span *ngIf="fileName2">{{fileName2}}</span>
+                            </div>
+                            <div class="formFile">
+                                <label for="documento3"></label>
+                                <input type="file" formControlName="documento3" id="documento3" (change)="fileProgress($event)" />
+                                <span *ngIf="fileName3">{{fileName3}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <button type="button" class="formButton" (click)="endRegistro()">
+        <p>REGISTRARSE</p>
+      </button>
+        </div>
+        <div class="formSide">
+            <img class="formImg" [src]="selectedImg" alt="Logo" />
+        </div>
+    </div>
 </div>

@@ -1,5 +1,113 @@
 <div class="modBox">
-	<div class="titleBox">
-			<p *ngFor="let item of menu; let i = index" (click)="toggleMenu($event, item, i)" class="titleMenu" [ngClass]="item.class">{{item.name}}</p>
+  <div class="titleBox">
+    <p
+      *ngFor="let item of menu; let i = index"
+      (click)="toggleMenu($event, item, i)"
+      class="titleMenu"
+      [ngClass]="item.class"
+    >
+      {{item.name}}
+    </p>
+  </div>
+
+  <!-- 	<div class="cardBox" *ngFor="let value of values; let i=index">
+		<div class="cardHeader">
+			<div class="cardImg">
+				<img [src]="value.img" alt="">
+			</div>
+			<div class="cardName">
+				<p>{{value.name}}</p>
+				<p>{{value.speciality}}</p>
+			</div>
+			<div class="cardIcons">
+			</div>		
 		</div>
+		<div class="cardContent">
+			<div class="cardText">
+				<p>Experiencia</p>
+				<p>{{value.experience}}</p>
+			</div>
+			<div class="cardText">
+				<p>Valoración</p>
+				<p>{{value.rating}}</p>
+			</div>
+			<div class="cardText">
+				<p>Reseñas</p>
+				<p>{{value.nreviews}}</p>
+			</div>
+		</div>
+		<div class="cardButtons">
+			<button (click)="tBox()">Pedir cita</button>
+			<button>Valorar</button>
+			<button>Mas información</button>
+		</div>
+	</div>		
+ -->
+  <div class="cardBox" *ngFor="let value of values; let i=index;trackBy: trackByFn">
+    <div class="cardHeader">
+      <div class="cardImg">
+        <img [src]="value.img" alt="" />
+      </div>
+      <div class="cardName">
+        <p>{{value[5].name}}</p>
+        <p>{{value[6]}}</p>
+      </div>
+      <div class="cardIcons"></div>
+    </div>
+    <div class="cardContent">
+      <div class="cardText">
+        <p>Experiencia</p>
+        <p>{{value[8]}}</p>
+      </div>
+      <div class="cardText">
+        <p>Dirección</p>
+        <p>{{value[9]}}</p>
+      </div>
+    </div>
+    <div class="cardButtons">
+      <button (click)="tBox()">Pedir cita</button>
+      <button>Valorar</button>
+      <button>Mas información</button>
+    </div>
+  </div>
+</div>
+<div class="blackBox" [ngClass]="openBox" (click)="tBox()"></div>
+
+<div class="addBox" [ngClass]="openBox">
+  <div class="closeButton">
+    <button class="closeB" (click)="tBox()">X</button>
+  </div>
+
+  <div class="formHeader">
+    <h1>Pedir cita</h1>
+  </div>
+
+  <form
+    class="formContent"
+    [formGroup]="reservaForm"
+    (ngSubmit)="confirmReserva()"
+  >
+    <input
+      class="lInput"
+      type="text"
+      formControlName="info"
+      placeholder="Describa sus síntomas"
+    />
+    <input
+      class="lInput"
+      type="date"
+      formControlName="fecha"
+      placeholder="Elegir fecha"
+    />
+    <input
+      class="lInput"
+      type="time"
+      formControlName="hora"
+      placeholder="Elegir hora"
+    />
+  </form>
+
+  <button type="submit" class="formButton">
+    <p>Aceptar</p>
+  </button>
 </div>
