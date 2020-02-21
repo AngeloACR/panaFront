@@ -4,6 +4,9 @@
             <h1>Registro</h1>
         </div>
         <div class="optionsBox">
+            <div class="logoBox">
+                <img class="formImg" src="assets/brand/logo.png" alt="Logo" />
+            </div>
             <h1>Seleccione su tipo de ususario:</h1>
             <div class="iconsBox">
                 <div class="iconBox">
@@ -14,12 +17,23 @@
                     <img class="iconImg" src="assets/svg-icons/doctor-color.svg" alt="Logo" (click)="toggleForm($event, 'doctor')" />
                     <p>Doctor</p>
                 </div>
+                <div class="iconBox">
+                    <img class="iconImg" src="assets/svg-icons/farma-color.svg" alt="Logo" (click)="toggleForm($event, 'farmacia')" />
+                    <p>Farmacia</p>
+                </div>
+                <div class="iconBox">
+                    <img class="iconImg" src="assets/svg-icons/lab-color.svg" alt="Logo" (click)="toggleForm($event, 'laboratorio')" />
+                    <p>Laboratorio</p>
+                </div>
             </div>
         </div>
     </div>
     <div class="blackBox" [ngClass]="showBlack" (click)="closeForm()"></div>
 
     <div class="logBox" [ngClass]="showForm">
+        <div class="closeButton">
+            <button class="closeB" (click)="closeForm()">X</button>
+        </div>
         <div class="formSide">
             <img class="formImg" src="assets/brand/logo.png" alt="Logo" />
         </div>
@@ -74,18 +88,18 @@
                         <div class="formFiles">
                             <div class="formFile">
                                 <label for="documento1"></label>
-                                <input type="file" formControlName="documento1" id="documento1" (change)="fileProgress($event)" />
-                                <span *ngIf="fileName1">{{fileName1}}</span>
+                                <input type="file" formControlName="documento1" id="documento1" (change)="fileProgress($event, 'documento1')" />
+                                <span class="fileName" *ngIf="fileName1">{{fileName1}}</span>
                             </div>
                             <div class="formFile">
                                 <label for="documento2"></label>
-                                <input type="file" formControlName="documento2" id="documento2" (change)="fileProgress($event)" />
-                                <span *ngIf="fileName2">{{fileName2}}</span>
+                                <input type="file" formControlName="documento2" id="documento2" (change)="fileProgress($event, 'documento2')" />
+                                <span class="fileName" *ngIf="fileName2">{{fileName2}}</span>
                             </div>
                             <div class="formFile">
                                 <label for="documento3"></label>
-                                <input type="file" formControlName="documento3" id="documento3" (change)="fileProgress($event)" />
-                                <span *ngIf="fileName3">{{fileName3}}</span>
+                                <input type="file" formControlName="documento3" id="documento3" (change)="fileProgress($event, 'documento3')" />
+                                <span class="fileName" *ngIf="fileName3">{{fileName3}}</span>
                             </div>
                         </div>
                     </div>

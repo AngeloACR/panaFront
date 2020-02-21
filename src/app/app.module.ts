@@ -5,6 +5,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { DatePipe } from '@angular/common';
+import { FileValueAccessor } from './directives/fileControl'
+import { FileValidator } from './directives/fileValidator'
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -21,7 +23,9 @@ registerLocaleData(localeVE, 'es-VE');
     AppComponent,
     LoginComponent,
     NotFoundComponent,
-    RegistroComponent
+    RegistroComponent,
+    FileValueAccessor,
+    FileValidator
   ],
   imports: [
     BrowserModule,

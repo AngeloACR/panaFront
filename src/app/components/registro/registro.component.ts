@@ -4,6 +4,7 @@ import { DbHandlerService } from '../../dashboard/services/db-handler.service';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
+import { FileValidator } from '../../directives/fileValidator';
 
 @Component({
   selector: 'app-registro',
@@ -15,17 +16,23 @@ export class RegistroComponent implements OnInit {
 
   registroUser: FormGroup;
   registroDoctor: FormGroup;
+  registroFarmacia: FormGroup;
+  registroLaboratorio: FormGroup;
   registroPaciente: FormGroup;
 
   formCompleted: Boolean;
   formSelected: Boolean;
   tipoSelected: String;
   isPaciente: Boolean;
+  isFarmacia: Boolean;
+  isLaboratorio: Boolean;
   isDoctor: Boolean;
   showBlack: {};
   showForm: {};
   selectedImg: String;
   doctorImg: String;
+  labImg: String;
+  farmaciaImg: String;
   pacienteImg: String;
 
   fileName1: String;
@@ -44,6 +51,8 @@ export class RegistroComponent implements OnInit {
     this.initForm();
     this.doctorImg = 'assets/svg-icons/doctor-color.svg';
     this.pacienteImg = 'assets/svg-icons/patient-color.svg';
+    this.labImg = 'assets/svg-icons/lab-color.svg';
+    this.farmaciaImg = 'assets/svg-icons/farma-color.svg';
   }
 
   initForm() {
@@ -61,12 +70,26 @@ export class RegistroComponent implements OnInit {
       summary: new FormControl(''),
       exp: new FormControl(''),
       addr: new FormControl(''),
-      documento1: new FormControl(''),
-      documento2: new FormControl(''),
-      documento3: new FormControl(''),
+      documento1: new FormControl('', [FileValidator.validate]),
+      documento2: new FormControl('', [FileValidator.validate]),
+      documento3: new FormControl('', [FileValidator.validate]),
     });
 
     this.registroPaciente = new FormGroup({
+    });
+
+    this.registroFarmacia = new FormGroup({
+      rif: new FormControl(''),
+      documento1: new FormControl('', [FileValidator.validate]),
+      documento2: new FormControl('', [FileValidator.validate]),
+      documento3: new FormControl('', [FileValidator.validate]),
+    });
+
+    this.registroLaboratorio = new FormGroup({
+      rif: new FormControl(''),
+      documento1: new FormControl('', [FileValidator.validate]),
+      documento2: new FormControl('', [FileValidator.validate]),
+      documento3: new FormControl('', [FileValidator.validate]),
     });
 
 
@@ -80,14 +103,30 @@ export class RegistroComponent implements OnInit {
       case 'doctor':
         this.isDoctor = true;
         this.isPaciente = false;
+        this.isFarmacia = false;
+        this.isLaboratorio = false;
         img = this.doctorImg;
         break;
       case 'paciente':
         this.isDoctor = false;
         this.isPaciente = true;
+        this.isFarmacia = false;
+        this.isLaboratorio = false;
         img = this.pacienteImg;
         break;
+      case 'farmacia':
+        this.isDoctor = false;
+        this.isPaciente = false;
+        this.isFarmacia = true;
+        this.isLaboratorio = false;
+        img = this.farmaciaImg;
+        break;
       default:
+        this.isDoctor = false;
+        this.isPaciente = false;
+        this.isFarmacia = false;
+        this.isLaboratorio = true;
+        img = this.labImg
         break;
     }
     this.selectedImg = img;
@@ -142,7 +181,33 @@ export class RegistroComponent implements OnInit {
 
         endpoint = '/patients';
         break;
+      case 'farmacia':
+        var servicioAux = this.registroFarmacia.value;
+        userValues = {
+          username: userAux.username,
+          name: userAux.name,
+          tlf: userAux.tlf,
+          mail: userAux.mail,
+          password: userAux.password,
+          type: 'Farmacia',
+        };
+
+        endpoint = '/farmas';
+        break;
       default:
+        var servicioAux = this.registroLaboratorio.value;
+        userValues = {
+          username: userAux.username,
+          name: userAux.name,
+          tlf: userAux.tlf,
+          mail: userAux.mail,
+          password: userAux.password,
+          type: 'Laboratorio',
+        };
+
+        endpoint = '/labs';
+        break;
+
         break;
     }
     this.dbHandler.createSomething(userValues, endpoint)
@@ -176,4 +241,26 @@ export class RegistroComponent implements OnInit {
     }
 
   }
+
+  fileProgress(fileInput, documento) {
+    let file = fileInput.target.files[0];
+    if (file) {
+      switch (documento) {
+        case 'documento1':
+          this.fileName1 = file.name;
+          break;
+        case 'documento2':
+          this.fileName2 = file.name;
+          break;
+        default:
+          this.fileName3 = file.name;
+          break;
+      }
+    } else {
+      this.fileName1 = "";
+      this.fileName2 = "";
+      this.fileName3 = "";
+    }
+  }
+
 }

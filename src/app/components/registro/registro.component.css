@@ -9,13 +9,12 @@
     width: 100%;
     height: 100%;
     z-index: 200;
-    /*   background-image: url('/assets/care-bg.jpg');
-background-size: cover;
-*/
+    background-image: url('/assets/images/care-bg.jpg');
+    background-size: cover;
 }
 
 .logoBox {
-    width: 46%;
+    width: 30%;
 }
 
 .logoBox img {
@@ -34,9 +33,11 @@ background-size: cover;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    width: 100%;
+    width: 50%;
     flex-wrap: nowrap;
-    height: 100%;
+    background-color: white;
+    /*     height: 100%;
+ */
 }
 
 .headerBox {
@@ -57,12 +58,11 @@ background-size: cover;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    padding-top: 15%;
-    flex-basis: 100%;
-    color: white;
+    padding-top: 5%;
+    color: black;
+    height: 100%;
     background-size: cover;
     width: 100%;
-    background-image: url('/assets/images/fondoForm.png');
 }
 
 .iconsBox {
@@ -70,6 +70,7 @@ background-size: cover;
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
+    width: 100%;
 }
 
 .iconsBox h1 {
@@ -85,7 +86,8 @@ background-size: cover;
 
 .iconBox p {
     font-weight: bold;
-    color: white;
+    color: black;
+    font-size: 23px;
 }
 
 .formInput {
@@ -134,12 +136,12 @@ justify-content: space-evenly; */
 .lInput {
     flex-basis: 100%;
     font-size: 16px;
-    padding-left: 23px;
+    padding-left: 16px;
     border-radius: 42px;
     height: 33px;
     border: none;
     background-image: none;
-    background-color: transparent;
+    background-color: #ffffc5;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     border-style: solid;
@@ -156,7 +158,7 @@ justify-content: space-evenly; */
 }
 
 .logBox {
-    background-color: white;
+    background-color: #ffffff;
     border-radius: 3px;
     height: 0;
     max-height: 80%;
@@ -192,6 +194,7 @@ justify-content: space-evenly; */
 .formContent {
     display: flex;
     width: 100%;
+    margin-top: 10px;
     padding-right: 5px;
     padding-left: 5px;
     height: auto;
@@ -271,7 +274,7 @@ margin: 0;
 }
 
 .iconImg {
-    height: 23vh;
+    height: 18vh;
     cursor: pointer;
 }
 
@@ -386,22 +389,22 @@ margin: 0;
 .formFiles {
     display: flex;
     flex-direction: row;
+    align-items: flex-start;
 }
 
 .formFile {
     display: flex;
-    flex-direction: row;
-    margin: auto;
+    flex-direction: column;
 }
 
 .formFile label {
-    width: 15vw;
-    height: 15vw;
+    width: 10vw;
+    height: 10vw;
     margin-left: 23px;
     margin-right: 23px;
     cursor: pointer;
     background-image: none;
-    background-color: transparent;
+    background-color: #ffffc5;
     border-style: solid;
     border-color: #0072b9;
     border-width: 2px;
@@ -432,6 +435,133 @@ margin: 0;
 .formDescripcion textarea {
     width: 100%;
     border-width: 2px;
+    padding-left: 16px;
     border-color: #0072b9;
     border-radius: 23px;
+    background-color: #ffffc5;
+}
+
+.fileName {
+    padding-top: 10px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.closeButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 23px;
+    height: 23px;
+}
+
+.closeButton .closeB {
+    background: transparent;
+    width: 100%;
+    height: 100%;
+    z-index: 2000;
+    color: red;
+    font-weight: bold;
+    margin: 0 auto;
+    text-align: center;
+    border: 2px solid red;
+    border-radius: 3px;
+    cursor: pointer;
+    padding: 0;
+}
+
+.closeButton .closeB:hover {
+    background-color: red;
+    color: white;
+}
+
+@media only screen and (max-width: 600px) {
+    .selectionBox {
+        width: 100%;
+        height: 100%;
+        display: block;
+    }
+    .pageBox {
+        overflow: hidden;
+        height: auto;
+    }
+    .formImg {
+        width: 25%;
+    }
+    .optionsBox h1 {
+        text-align: center;
+        font-size: 23px;
+    }
+    .optionsBox {
+        flex-basis: 100%;
+        overflow-y: scroll;
+    }
+    .iconsBox {
+        flex-wrap: wrap;
+    }
+    .iconBox {
+        width: 42%;
+    }
+    .iconBox img {
+        width: 100%;
+        height: auto;
+    }
+    .iconBox p {
+        font-size: 16px;
+    }
+    .formBox {
+        order: 2;
+        margin: 0;
+        width: 100%;
+    }
+    .formContent {
+        padding: 0;
+    }
+    .formSide {
+        width: 31%;
+        height: auto;
+    }
+    .logBox {
+        flex-wrap: wrap;
+        width: 100%;
+        max-height: 100%;
+    }
+    .formInput {
+        width: 80%;
+        margin-bottom: 15px;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+    .formDescripcion {
+        width: 80%;
+        margin: auto;
+    }
+    .formImagenes {
+        width: 80%;
+        margin: auto;
+    }
+    .formImagenes h3 {
+        font-size: 16px;
+        text-align: center;
+    }
+    .formButton {
+        width: 60%;
+        margin-top: 2vh;
+        margin-bottom: 2vh;
+    }
+    .formButton p {
+        font-size: 18x;
+    }
+    .fileName {
+        font-size: 8px;
+    }
+    .formFile label {
+        border-radius: 8px;
+    }
+    .lInput {
+        height: 23px;
+    }
+    .formAct {
+        height: 100%;
+    }
 }
