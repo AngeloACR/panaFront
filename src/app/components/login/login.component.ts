@@ -38,21 +38,58 @@ export class LoginComponent implements OnInit {
       }
     });
   }
+
   actualizar() {
-    let refreshList = [
-      {
-        endpoint: '/users/all',
-        name: 'users'
-      },
-      {
-        endpoint: '/doctors/all',
-        name: 'doctors'
-      },
-      {
-        endpoint: '/patients/all',
-        name: 'patients'
-      },
-    ]
+    let user = this.auth.decode();
+    let tipo = user.type;
+    let refreshList;
+    if(tipo == 'Admin'){
+        refreshList = [
+          {
+            endpoint: '/users/all',
+            name: 'users'
+          },
+          {
+            endpoint: '/doctors/all',
+            name: 'doctors'
+          },
+          {
+            endpoint: '/patients/all',
+            name: 'patients'
+          },
+          {
+            endpoint: '/reservas/all',
+            name: 'citasAdmin'
+          },/* 
+          {
+            endpoint: `/reservas/patient/${user._id}`,
+            name: 'citas'
+          }, */
+        ]        
+} else if(tipo == 'Doctor'){
+
+        refreshList = [
+          {
+            endpoint: '/patients/all',
+            name: 'patients'
+          },
+          {
+            endpoint: `/reservas/doctor/${user._id}`,
+            name: 'citas'
+          }
+        ]
+}else if(tipo == 'Paciente'){
+        refreshList = [
+          {
+            endpoint: '/doctors/all',
+            name: 'doctors'
+          },
+          {
+            endpoint: `/reservas/patient/${user._id}`,
+            name: 'citas'
+          },
+        ]
+    }
     let dataArray = [];
     refreshList.forEach(element => {
       dataArray.push(this.dbHandler.getSomething(element.endpoint));
@@ -63,7 +100,7 @@ export class LoginComponent implements OnInit {
         this.dbHandler.refreshData(info[i], element.name);
         i++;
       });
-      window.location.reload();
+      this.router.navigateByUrl('/');
     });
   }
   flush() {

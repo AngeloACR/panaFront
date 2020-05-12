@@ -6,8 +6,6 @@ import { DatePipe } from '@angular/common';
 import { CommonModule } from '@angular/common';
 
 import { registerLocaleData } from '@angular/common';
-import localeCO from '@angular/common/locales/es-CO';
-registerLocaleData(localeCO, 'es-CO');
 
 import { DashboardComponent } from './dashboard.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
@@ -22,6 +20,7 @@ import { AgendaComponent } from './components/agenda/agenda.component';
 import { DbHandlerService } from './services/db-handler.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ConsultasComponent } from './components/consultas/consultas.component';
+import { BilleteraComponent } from './components/billetera/billetera.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +28,13 @@ import { ConsultasComponent } from './components/consultas/consultas.component';
     AdministracionComponent,
     DirectorioComponent,
     HeaderComponent,
-    SidemenuComponent, PerfilComponent, BlankComponent, PreguntasComponent, AgendaComponent, ConsultasComponent
+    SidemenuComponent,
+    PerfilComponent,
+    BlankComponent,
+    PreguntasComponent,
+    AgendaComponent,
+    ConsultasComponent,
+    BilleteraComponent
   ],
   imports: [
     CommonModule,
@@ -46,7 +51,6 @@ import { ConsultasComponent } from './components/consultas/consultas.component';
   providers: [
     DbHandlerService,
     DatePipe,
-    { provide: LOCALE_ID, useValue: 'es-CO' }
   ],
 })
 export class DashboardModule { }

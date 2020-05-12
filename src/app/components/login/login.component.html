@@ -6,21 +6,20 @@
             </h1>
         </div>
         <div class="logoBox">
-            <img class="formImg" src="assets/brand/logo.png" alt="Logo">
+            <img class="formImg" src="assets/brand/logo.png" alt="Logo" />
         </div>
         <div class="formBox">
             <form [formGroup]="login" (ngSubmit)="logUser()">
                 <div class="formContent">
                     <div class="formInput">
                         <label for="">Usuario</label>
-                        <input class="lInput" type="text" formControlName="username" name="username">
+                        <input class="lInput" type="text" formControlName="username" name="username" />
                     </div>
                     <div class="formInput">
                         <label for="">Contraseña</label>
-                        <input class="lInput" type="password" formControlName="password" name="password">
+                        <input class="lInput" type="password" formControlName="password" name="password" />
                     </div>
                     <div class="buttonBox">
-
                         <button style="margin-right: 10px;" type="button" class="formButton" (click)="registro()">
               <p>Registrarse</p>
             </button>

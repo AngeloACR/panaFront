@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { Router, ActivatedRoute, ParamMap, NavigationEnd } from '@angular/router';
 import { DbHandlerService } from '../../services/db-handler.service';
 import { FormBuilder, FormGroup, FormControl, FormArray } from '@angular/forms';
@@ -13,6 +13,7 @@ import { forkJoin } from 'rxjs';
 export class AdministracionComponent implements OnInit {
   id: string;
   endpoint: string;
+  type: string;
   title: string;
   forms: string[];
   fields: string[];
@@ -21,6 +22,7 @@ export class AdministracionComponent implements OnInit {
   addText: string;
   myForm: FormGroup;
   passwordForm: FormGroup;
+  filterForm: FormGroup;
   myInputs: FormArray;
   addForm: boolean;
   showForm: boolean;
@@ -74,6 +76,22 @@ export class AdministracionComponent implements OnInit {
 
   }
 
+  applyFilter(){
+    this.type = this.filterForm.value.tipo
+    console.log(this.type);
+    this.values = [];
+    let vAux = this.dbHandler.getLocal(this.name + 'Values');
+    if( this.type == 'Todos'){
+      this.values = vAux;
+    } else{
+      for (var i = 0; i < vAux.length; i++) {
+        if (vAux[i][1] === this.type) {
+          this.values.push(vAux[i]);
+        }
+      }
+    }
+  }
+
   setMenu() {
     this.menu = [{
       name: 'Administrar usuarios',
@@ -117,8 +135,12 @@ export class AdministracionComponent implements OnInit {
       username: new FormControl(''),
       type: new FormControl(''),
       password: new FormControl(''),
-      passwordAgain: new FormControl('')
+      passwordAgain: new FormControl(''),
     });
+
+    this.filterForm = new FormGroup({
+      tipo: new FormControl(''),
+    })
 
 /*     this.myForm = new FormGroup(aux);
  */}

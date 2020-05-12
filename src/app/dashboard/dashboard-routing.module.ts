@@ -5,6 +5,7 @@ import { DirectorioComponent } from './components/directorio/directorio.componen
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { BlankComponent } from './components/blank/blank.component';
 import { AgendaComponent } from './components/agenda/agenda.component';
+import { BilleteraComponent } from './components/billetera/billetera.component';
 import { ConsultasComponent } from './components/consultas/consultas.component';
 import { PreguntasComponent } from './components/preguntas/preguntas.component';
 
@@ -59,6 +60,14 @@ const routes: Routes = [
   {
     path: 'preguntas/:id', 
     component: PreguntasComponent,
+    canActivate: [Guard],
+    data: {
+      role1: 'Admin'
+    }
+  },
+  {
+    path: 'billetera/:id', 
+    component: BilleteraComponent,
     canActivate: [Guard],
     data: {
       role1: 'Admin'

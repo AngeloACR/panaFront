@@ -7,6 +7,31 @@
   flex-wrap: wrap;
 }
 
+.cardBox {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: 1%;
+  margin-left: 1%;
+  padding-right: 1%;
+  margin-right: 1%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 96%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.cardBox table {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
+}
+
 .titleBox {
   display: flex;
   flex-direction: row;
@@ -33,15 +58,15 @@
 }
 
 .titleMenu:active {
-  background: rgba(255, 255, 255, .3);
+  background: rgba(255, 255, 255, 0.3);
   opacity: 0.5;
   filter: alpha(opacity=20);
 }
 
-.menuAct{
+.menuAct {
   border-bottom-style: solid;
-  border-bottom-width:2px;
-  border-bottom-color: #FF6F00;
+  border-bottom-width: 2px;
+  border-bottom-color: #ff6f00;
 }
 
 .listBox {
@@ -50,23 +75,27 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 5vh;
+  height: 30px;
+  line-height: 30px;
   margin-top: 0;
-  background: #029ced;
-  color: white;
+  color: black;
   text-align: center;
+}
+
+.listBox th {
+  font-weight: bold;
 }
 
 .titleColumn {
   width: 33%;
 }
 
-.listBox .listTitle {
-  font-weight: bold;
-}
-
 .listTitle {
-  width: 25%;
+  height: 100%;
+  flex-basis: 100%;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: gainsboro;
 }
 
 .buttonBox {
@@ -127,12 +156,39 @@
   overflow: hidden;
 }
 
-.lInput {
+/* .lInput {
   width: 42%;
   margin-bottom: 5%;
   margin-top: 5px;
   border-radius: 3px;
+} */
+
+.lInput {
+    flex-basis: 100%;
+    font-size: 16px;
+    padding-left: 16px;
+    border-radius: 42px;
+    height: 33px;
+    border: none;
+    background-image: none;
+    background-color: #ffffc5;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    border-style: solid;
+    border-color: #0072b9;
+    border-width: 2px;
+    box-shadow: none;
 }
+
+/* 
+.lInput {
+  margin-bottom: 5px;
+  margin-top: 5px;
+  border-radius: 5px;
+  width: 100%;
+  font-size: 16px;
+}
+ */
 
 .showBox {
   width: 84%;
@@ -157,10 +213,11 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  height: 30px;
+  line-height: 30px;
   text-align: center;
+  margin-top: 10px;
   width: 100%;
-  margin-top: 5px;
-  margin-bottom: 5px;
 }
 
 .formHeader {
@@ -175,52 +232,24 @@
   width: 100%;
 }
 
-.formContent {
-  display: flex;
-  width: 100%;
-  padding-right: 5px;
-  padding-left: 5px;
-  margin-top: 3vh;
-  height: auto;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.formButton {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 65%;
-  height: 5vh;
-  margin-top: 5vh;
-  margin-bottom: 5vh;
-  background: #029ced;
-  color: white;
-  text-align: center;
-  border-radius: 3px;
-  cursor: pointer;
-  border: solid;
-  border-color: #029ced;
-  border-width: 1px;
-}
-
 .listButton {
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  width: 10%;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: gainsboro;
 }
 
 .listButton #closeB {
   background: transparent;
   color: red;
   font-weight: bold;
+  margin-right: 10px;
   width: 27px;
   height: 27px;
-  margin: 0 auto;
   text-align: center;
   border: 2px solid red;
   border-radius: 3px;
@@ -230,12 +259,8 @@
 
 .listButton #updateB {
   background: transparent;
-  color: red;
-  font-weight: bold;
   width: 23px;
   height: 23px;
-  margin: 0 auto;
-  text-align: center;
   border: 2px solid grey;
   border-radius: 3px;
   cursor: pointer;
@@ -293,10 +318,58 @@
   transition: max-height 0.5s ease-out;
 }
 
-.lInput {
-  margin-bottom: 5px;
-  margin-top: 5px;
-  border-radius: 5px;
+
+.filterBox{
   width: 100%;
-  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.filterBox .formContent {
+  display: flex;
+  width: 100%;
+  padding-right: 5px;
+  padding-left: 5px;
+  margin-top: 3vh;
+  height: auto;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.filterBox .formButton {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 20%;
+  height: 3vh;
+  margin-top: 3vh;
+  margin-bottom: 5vh;
+  background: #029ced;
+  color: white;
+  text-align: center;
+  border-radius: 3px;
+  cursor: pointer;
+  border: solid;
+  border-color: #029ced;
+  border-width: 1px;
+}
+
+.filterBox .formButton:hover {
+  background: white;
+  color: #029ced;
+  font-weight: bold;
+}
+
+.filterBox .formInput label {
+  margin-right: 10px;
+}
+
+.filterBox .formInput select {
+    border: 3px solid #0072b9;
+    color: #0072b9;
+    background-color: white;
 }

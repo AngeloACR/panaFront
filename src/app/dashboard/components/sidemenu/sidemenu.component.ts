@@ -46,114 +46,87 @@ export class SidemenuComponent implements OnInit {
 
 	setAdminMenu(){
 		this.myMenu = [{
-			name: 'Directorio',
-			link: '/dir/0',
+			name: 'Administrador',
+			link: '/adm/0',
 			id: 0,
-			icon: faAddressBook
-		},
-		{
-			name: 'Perfil',
-			link: '/perfil/0',
-			id: 1,
-			icon: faIdCard
+			icon: faUserCog
 		},
 		{
 			name: 'Agenda',
 			link: '/agenda/0',
-			id: 2,
+			id: 1,
 			icon: faCalendarPlus
-		},
-		{
-			name: 'Preguntas',
-			link: '/preguntas/0',
-			id: 3,
-			icon: faQuestionCircle
-		},
+		},{
+			name: 'Perfil',
+			link: '/perfil/0',
+			id: 1,
+			icon: faIdCard
+		}/* ,
 		{
 			name: 'Consultas',
 			link: '/consultas/0',
-			id: 4,
+			id: 3,
 			icon: faComments
 		},
 		{
 			name: 'Billetera',
-			link: '/consultas/0',
-			id: 5,
+			link: '/billetera/0',
+			id: 4,
 			icon: faDollarSign
-		},
-		{
-			name: 'Administrador',
-			link: '/adm/0',
-			id: 6,
-			icon: faUserCog
-		}];
+		} */];
 	}
 
 
 	setDoctorMenu(){
 		this.myMenu = [{
+			name: 'Agenda',
+			link: '/agenda/0',
+			id: 0,
+			icon: faCalendarPlus
+		},{
 			name: 'Perfil',
 			link: '/perfil/0',
 			id: 1,
 			icon: faIdCard
-		},
-		{
-			name: 'Agenda',
-			link: '/agenda/0',
-			id: 2,
-			icon: faCalendarPlus
-		},
-		{
-			name: 'Preguntas',
-			link: '/preguntas/0',
-			id: 3,
-			icon: faQuestionCircle
-		},
+		}/* ,
 		{
 			name: 'Consultas',
 			link: '/consultas/0',
-			id: 4,
+			id: 2,
 			icon: faComments
 		},
 		{
 			name: 'Billetera',
-			link: '/consultas/0',
-			id: 5,
+			link: '/billetera/0',
+			id: 3,
 			icon: faDollarSign
-		}];
+		} */];
 	}
 	
 	setPacMenu(){
 		this.myMenu = [{
+			name: 'Agenda',
+			link: '/agenda/0',
+			id: 0,
+			icon: faCalendarPlus
+		},{
 			name: 'Perfil',
 			link: '/perfil/0',
 			id: 1,
 			icon: faIdCard
-		},
-		{
-			name: 'Agenda',
-			link: '/agenda/0',
-			id: 2,
-			icon: faCalendarPlus
-		},
-		{
-			name: 'Preguntas',
-			link: '/preguntas/0',
-			id: 3,
-			icon: faQuestionCircle
-		},
+		}/* ,
 		{
 			name: 'Consultas',
 			link: '/consultas/0',
-			id: 4,
+			id: 2,
 			icon: faComments
 		},
 		{
 			name: 'Billetera',
-			link: '/consultas/0',
-			id: 5,
+			link: '/billetera/0',
+			id: 3,
 			icon: faDollarSign
-		}];
+		} */];
 	}
 
 

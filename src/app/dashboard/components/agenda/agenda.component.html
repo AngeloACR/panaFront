@@ -1,77 +1,123 @@
 <div class="modBox">
-  <div class="titleBox">
+  <div class="titleBox" *ngIf="isListarCitas || isListarDoctores || isListarCitasAdmin">
     <p
       *ngFor="let item of menu; let i = index"
       (click)="toggleMenu($event, item, i)"
       class="titleMenu"
       [ngClass]="item.class"
     >
-      {{item.name}}
+      {{ item.name }}
     </p>
   </div>
-
-  <!-- 	<div class="cardBox" *ngFor="let value of values; let i=index">
-		<div class="cardHeader">
-			<div class="cardImg">
-				<img [src]="value.img" alt="">
-			</div>
-			<div class="cardName">
-				<p>{{value.name}}</p>
-				<p>{{value.speciality}}</p>
-			</div>
-			<div class="cardIcons">
-			</div>		
-		</div>
-		<div class="cardContent">
-			<div class="cardText">
-				<p>Experiencia</p>
-				<p>{{value.experience}}</p>
-			</div>
-			<div class="cardText">
-				<p>Valoración</p>
-				<p>{{value.rating}}</p>
-			</div>
-			<div class="cardText">
-				<p>Reseñas</p>
-				<p>{{value.nreviews}}</p>
-			</div>
-		</div>
-		<div class="cardButtons">
-			<button (click)="tBox()">Pedir cita</button>
-			<button>Valorar</button>
-			<button>Mas información</button>
-		</div>
-	</div>		
- -->
-  <div class="cardBox" *ngFor="let value of values; let i=index;trackBy: trackByFn">
-    <div class="cardHeader">
-      <div class="cardImg">
-        <img [src]="value.img" alt="" />
+  <div class="contentBox" *ngIf="isListarDoctores || isListarPacientes">
+    <div class="cardBox" *ngFor="let value of values; let i = index">
+      <div class="cardHeader">
+        <div class="cardImg">
+          <img [src]="value.img" alt="" />
+        </div>
+        <div class="cardName">
+          <p class="cardNameTitle">Dr. {{ value[5].name }}</p>
+          <p class="cardNameSpeciality">{{ value[6] }}</p>
+        </div>
+        <div class="cardIcons"></div>
       </div>
-      <div class="cardName">
-        <p>{{value[5].name}}</p>
-        <p>{{value[6]}}</p>
+      <div class="cardAddress">
+        <fa-icon [icon]="faMapMarkerAlt" class="cardIcon"></fa-icon>
+        <p>{{ value[9] }}</p>
       </div>
-      <div class="cardIcons"></div>
-    </div>
-    <div class="cardContent">
-      <div class="cardText">
-        <p>Experiencia</p>
-        <p>{{value[8]}}</p>
+      <div class="cardContent">
+        <div class="cardText">
+          <p class="cardTextTitle">Experiencia</p>
+          <p class="cardTextInfo">{{ value[8] }}</p>
+        </div>
+        <div class="cardText">
+          <p class="cardTextTitle">Valoracion</p>
+          <p class="cardTextInfo">125%</p>
+        </div>
+        <div class="cardText">
+          <p class="cardTextTitle">Reseñas</p>
+          <p class="cardTextInfo">0</p>
+        </div>
       </div>
-      <div class="cardText">
-        <p>Dirección</p>
-        <p>{{value[9]}}</p>
+      <div class="cardButtons">
+        <button (click)="programarCita($event, value)">Pedir cita</button>
+        <button>Valorar</button>
+        <button (click)="verPerfil($event, value)">Mas información</button>
       </div>
-    </div>
-    <div class="cardButtons">
-      <button (click)="tBox()">Pedir cita</button>
-      <button>Valorar</button>
-      <button>Mas información</button>
     </div>
   </div>
+  <div class="contentBox" *ngIf="isListarCitas || isListarCitasAdmin">
+    <div class="cardBox" *ngFor="let value of values; let i = index">
+      <div class="cardHeader">
+        <div class="cardName">
+          <p class="cardNameTitle">Doctor: {{ value[2].userId.name }}</p>
+          <p class="cardNameTitle">Paciente {{ value[1].userId.name }}</p>
+        </div>
+      </div>
+      <div class="cardAddress">
+        <fa-icon [icon]="faNotesMedical" class="cardIcon"></fa-icon>
+        <p>Descripción: {{ value[3] }}</p>
+      </div>
+      <div class="cardContent">
+        <div class="cardText">
+          <p class="cardTextTitle">Fecha</p>
+          <p class="cardTextInfo">{{ value[4] | date:'d/M/yyyy'}}</p>
+        </div>
+        <div class="cardText">
+          <p class="cardTextTitle">Hora</p>
+          <p class="cardTextInfo">{{ value[4] | date:'h:mm aaa z'}}</p>
+        </div>
+        <div class="cardText">
+          <p class="cardTextTitle">Referencia</p>
+          <p class="cardTextInfo">{{ value[4] }}</p>
+        </div>
+      </div>
+      <div class="cardButtons">
+        <button type="button" (click)="cancelarCita($event, 'eliminar', value)">Cancelar cita</button>
+      </div>
+    </div>  
+  </div>
+  <div class="contentBox" *ngIf="isAgendar">
+    <div class="cardBox">
+      <div class="formHeader">
+        <p>Programar cita</p>
+      </div>
+      <form
+        class="formContent"
+        [formGroup]="reservaForm"
+        (ngSubmit)="confirmReserva()"
+      >
+        <input
+          class="lInput"
+          type="text"
+          formControlName="info"
+          placeholder="Describa sus síntomas"
+        />
+        <input
+          class="lInput"
+          type="date"
+          formControlName="fecha"
+          placeholder="Elegir fecha"
+        />
+        <input
+          class="lInput"
+          type="time"
+          formControlName="hora"
+          placeholder="Elegir hora" 
+          step='3600'
+        />
+      </form>
+
+      <div class="cardButtons" style="margin-top: 8px">
+        <button type="button" (click)="cancelarCita($event, 'volver', '')">Cancelar cita</button>
+        <button type="button"  (click)="confirmReserva()">Agendar cita</button>
+      </div>
+    </div>
+  </div>
+  <div class="contentBox" *ngIf="isPerfil"></div>
 </div>
-<div class="blackBox" [ngClass]="openBox" (click)="tBox()"></div>
+
+<!-- <div class="blackBox" [ngClass]="openBox" (click)="tBox()"></div>
 
 <div class="addBox" [ngClass]="openBox">
   <div class="closeButton">
@@ -79,7 +125,7 @@
   </div>
 
   <div class="formHeader">
-    <h1>Pedir cita</h1>
+    <h1>Programar cita</h1>
   </div>
 
   <form
@@ -111,3 +157,4 @@
     <p>Aceptar</p>
   </button>
 </div>
+ -->

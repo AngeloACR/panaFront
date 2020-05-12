@@ -69,28 +69,9 @@ export class DirectorioComponent implements OnInit {
       this.initComponent('/users/admin', 'Admin', 'Lista de Administradores', 'Agregar Administradores')
     }
 
-    this.users = [];
-    this.users.push({
-      name: 'Angelo Crincoli',
-      speciality: 'Urologo',
-      experience: '5 años'
-    });
-
-    this.users.push({
-      name: 'Angelo Crincoli',
-      speciality: 'Urologo',
-      experience: '5 años'
-    });
-
-    this.users.push({
-      name: 'Angelo Crincoli',
-      speciality: 'Urologo',
-      experience: '5 años'
-    });
-
     this.values = [];
-    let vAux = this.dbHandler.getLocal(this.name + 'Values');
     this.fields = this.dbHandler.getLocal(this.name + 'Fields');
+    let vAux = this.dbHandler.getLocal(this.name + 'Values');
     for (var i = 0; i < vAux.length; i++) {
       if (vAux[i][1] === this.type) {
         this.values.push(vAux[i]);
